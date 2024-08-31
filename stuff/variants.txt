@@ -1,0 +1,38 @@
+forestry: 29 variations (one for each type of wood)
+colors: 115 variations -- 7 * 15 (red, yellow, brown, gray, blue, green, purple) + 1 * 10 (cyan)
+mini: 16 colors
+
+
+
+grass cloth: forestry, wool
+honeycomb: forestry, wool
+leafy: forestry, wool
+beehive: forestry, stone
+glass stone bricks: forestry, glass
+--> 5 * 29 = 145
+
+solid: colors, stone
+brick: colors, bricks
+colored bricks: colors, bricks
+stone lamp: colors, stone, light
+checkered wool: colors, wool (+carpets)
+dotted: colors, stone
+diagnoally dotted: colors, stone
+clay: colors, hardened clay
+aura lamp: colors, stone, light
+fancy tiles: colors, stone
+floral: colors, stone
+damask: colors, stone
+rippled: colors, stone
+frosted glass: colors, glass
+tinted glass: colors, glass
+striped: colors, stone
+wool: colors, wool (+carpets)
+planks: colors, planks
+--> (18 + 2 carpets) * 115 = 2300
+
+jewel: mini, stone
+stamp: mini, stone
+--> 2 * 16 = 32
+
+Total: 2477 blocks (including carpets)

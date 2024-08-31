@@ -1,0 +1,209 @@
+# PROBLEMS:
+# duplicate brown grays (from brown)
+# duplicate light spring greens (from green)
+# duplicate midnight blues (from purple and blue)
+# duplicate sequoias
+
+standard # OK!
+    red # OK!
+        salmon
+            light
+        brown
+            dark
+
+        light
+        bright
+        blood
+        orange
+        terracotta
+
+
+    pink # OK!
+        -light
+            warm
+            cool
+
+        hot
+        dark
+        baby
+        fuchsia
+
+
+    brown # OK!
+        sienna
+            burnt
+        beige
+            light
+        -gray
+            light
+            middle
+            dark
+
+        gray1 # TODO: duplicates
+        gray2
+        earth
+        saddle
+        soil
+
+
+    orange # OK!
+        dark
+        deep
+        light
+        sunny
+        soft
+
+
+    purple
+        magenta
+            light
+            dark
+        violet
+            light
+            dark
+        lavender
+            light
+
+        light
+        dark
+
+
+    # TODO: sort this crap out
+    -cyan # OK!
+        light_green_blue
+        light_turquoise_blue
+        turquoise_blue
+        teal_blue
+        dark_teal_blue
+        light_seafoam_blue_green
+        seafoam_blue_green
+        blue_green
+        dark_blue_green
+        dark_pine_blue_green
+
+
+    blue # OK!
+        aqua
+            light
+            dark
+        sky
+            light
+            dark
+        baby
+            light
+
+        azure
+        navy
+        ocean
+        royal # from purple
+        midnight1 # TODO: duplicates
+        midnight2
+        bright
+        deep
+        medium
+        light
+        dark
+
+
+    green # OK!
+        spring
+            light1 # TODO: duplicates
+            light2
+        summer
+            light
+        olive
+            light
+        lush
+            dark
+            deep
+
+        light
+        dark
+        moss
+
+
+    yellow # OK!
+        lemon
+            light
+
+        sunny
+        soft
+        orange
+        light_sand
+        light
+        gold
+
+
+    gray # OK!
+        # white moved to its own color
+        warm
+            light
+            middle
+            dark
+        cool
+            light
+            dark
+        -blue
+            cool
+            -dark
+                cool
+
+        light
+        dark
+        black
+        warm_black
+
+
+    white
+
+
+special # OK!
+    pink
+        hot
+    blue
+        light
+        dark
+    green
+        light
+        dark
+    gray
+        light
+        dark
+
+    red
+    orange
+    yellow
+    purple
+    brown
+
+
+forestry # OK!
+    larch
+    teak
+    desert_acacia
+    lime
+    chestnut
+    wenge
+    baobab
+    sequoia1 # TODO: duplicates
+    sequoia2
+    kapok
+    ebony
+    mahogany
+    balsa
+    willow
+    walnut
+    greenheart
+    cherry
+    mahoe
+    poplar
+    palm
+    papaya
+    pine
+    plum
+    maple
+    citrus
+    ipe
+    padauk
+    cocobolo
+    zebrawood
