@@ -13,10 +13,6 @@ public class CsvTable {
      */
     private final List<List<String>> table = new ArrayList<>();
 
-    private final int rowCount;
-
-    private final int columnCount;
-
     public CsvTable(String csv) {
         this(csv, ',');
     }
@@ -34,8 +30,6 @@ public class CsvTable {
         for (String line : csvLines) {
             parseRow(line, lineIndex++, delimiter);
         }
-        columnCount = table.size();
-        rowCount = table.stream().mapToInt(List::size).max().getAsInt();
     }
 
     private void parseRow(String csvLine, int lineIndex, char delimiter) {
@@ -50,12 +44,12 @@ public class CsvTable {
         return table.get(column).get(row);
     }
 
-    public int getRowCount() {
-        return rowCount;
+    public int getRowCount(int column) {
+        return table.get(column).size();
     }
 
     public int getColumnCount() {
-        return columnCount;
+        return table.size();
     }
 
     public Iterable<String> getRowIterable(int row) {
@@ -67,7 +61,7 @@ public class CsvTable {
 
                     @Override
                     public boolean hasNext() {
-                        return column < columnCount;
+                        return column < getColumnCount();
                     }
 
                     @Override
@@ -88,7 +82,7 @@ public class CsvTable {
 
                     @Override
                     public boolean hasNext() {
-                        return row < rowCount;
+                        return row < getRowCount(column);
                     }
 
                     @Override
