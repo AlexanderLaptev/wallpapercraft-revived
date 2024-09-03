@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CsvTable {
     /**
-     * A column-major table of {@link java.lang.String} entries.
+     * A column-major table of {@link String} entries.
      */
     private final List<List<String>> table = new ArrayList<>();
 
@@ -18,21 +18,29 @@ public class CsvTable {
     private final int columnCount;
 
     public CsvTable(String csv) {
-        this(csv.lines().toList());
+        this(csv, ',');
     }
 
     public CsvTable(Iterable<String> csvLines) {
+        this(csvLines, ',');
+    }
+
+    public CsvTable(String csv, char delimiter) {
+        this(csv.lines().toList(), delimiter);
+    }
+
+    public CsvTable(Iterable<String> csvLines, char delimiter) {
         int lineIndex = 0;
         for (String line : csvLines) {
-            parseRow(line, lineIndex++);
+            parseRow(line, lineIndex++, delimiter);
         }
         columnCount = table.size();
         rowCount = table.stream().mapToInt(List::size).max().getAsInt();
     }
 
-    private void parseRow(String csvLine, int lineIndex) {
+    private void parseRow(String csvLine, int lineIndex, char delimiter) {
         try {
-            table.add(StringSplitter.splitCsvString(csvLine));
+            table.add(StringSplitter.splitCsvString(csvLine, delimiter));
         } catch (CsvParseException e) {
             throw new CsvParseException("Exception while parsing line " + (lineIndex + 1), e);
         }
