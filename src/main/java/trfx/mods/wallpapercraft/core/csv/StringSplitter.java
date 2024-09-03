@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringSplitter {
-    public static List<String> splitCsvString(String csvString) {
-        return splitCsvString(csvString, ',');
+    public static List<String> splitCsvLine(String csvLine) {
+        return splitCsvLine(csvLine, ',');
     }
 
-    public static List<String> splitCsvString(String csvString, char delimiter) {
+    public static List<String> splitCsvLine(String csvLine, char delimiter) {
         List<String> result = new ArrayList<>();
-
-        char[] chars = csvString.toCharArray();
+        char[] chars = csvLine.toCharArray();
         int position = 0;
         int lastPosition = chars.length - 1;
 
@@ -36,7 +35,7 @@ public class StringSplitter {
                         throw new CsvParseException(String.format(
                                 "Encountered an escaped quote in an unquoted value at position %d in string '%s'",
                                 position,
-                                csvString
+                                csvLine
                         ));
                     }
                     valueBuilder.append('"');
@@ -45,7 +44,7 @@ public class StringSplitter {
                     throw new CsvParseException(String.format(
                             "Unexpected quote at position %d in string '%s'",
                             position,
-                            csvString
+                            csvLine
                     ));
                 }
             } else {

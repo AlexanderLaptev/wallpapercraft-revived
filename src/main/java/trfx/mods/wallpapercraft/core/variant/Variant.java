@@ -12,13 +12,13 @@ public class Variant {
 
     public Variant(CsvTable table) {
         // Validate
-        for (int row = 1; row < table.getRowCount(0); row++) {
+        for (int row = 1; row < table.getRowCount(); row++) {
             Validate.notEmpty(table.get(row, 0), "Variant with no internal name found in row %d", row);
         }
 
         // Fill internal names
         Set<String> names = new HashSet<>();
-        for (int row = 1; row < table.getRowCount(0); row++) {
+        for (int row = 1; row < table.getRowCount(); row++) {
             String name = table.get(row, 0);
             Validate.isTrue(names.add(name), "Duplicate of variant '%s' found in row %d", name, row);
         }
@@ -26,7 +26,7 @@ public class Variant {
 
         // Fill lookup
         Map<String, Map<String, String>> lookup = new HashMap<>();
-        for (int row = 1; row < table.getRowCount(0); row++) {
+        for (int row = 1; row < table.getRowCount(); row++) {
             String internal = table.get(row, 0);
             Map<String, String> locales = new HashMap<>();
             for (int column = 1; column < table.getColumnCount(); column++) {

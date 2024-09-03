@@ -1,6 +1,6 @@
 {
   "jewel": {
     "type": "stone",
-    "variants": "special"
+    "variant": "special"
   }
 }

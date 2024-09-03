@@ -9,43 +9,61 @@ import java.util.List;
 
 public class CsvTable {
     /**
-     * A column-major table of {@link String} entries.
+     * A row-major table of {@link String} entries.
      */
     private final List<List<String>> table = new ArrayList<>();
 
+    private final int rowCount;
+
+    private final int columnCount;
+
+    public CsvTable(String csv) {
+        this(csv, ',');
+    }
+
     public CsvTable(String csv, char delimiter) {
-        String[] lines = csv.split("\\r?\\n");
-        int lineNumber = 1;
-        for (String line : lines) {
-            parseRow(line, lineNumber, delimiter);
+        if (csv.isBlank()) {
+            throw new CsvParseException("Blank CSV string, nothing to parse");
         }
+        String[] lines = csv.split("\\r?\\n");
+        int lineIndex = 0;
+        for (String line : lines) {
+            parseRow(line, lineIndex + 1, delimiter);
+            lineIndex++;
+        }
+        rowCount = lineIndex;
+        columnCount = table.get(0).size();
     }
 
     private void parseRow(String csvLine, int lineNumber, char delimiter) {
         try {
-            table.add(StringSplitter.splitCsvString(csvLine, delimiter));
+            List<String> split = StringSplitter.splitCsvLine(csvLine, delimiter);
+            if (!table.isEmpty() && table.get(0).size() != split.size()) {
+                throw new CsvParseException("All CSV rows must have the same length");
+            }
+            table.add(StringSplitter.splitCsvLine(csvLine, delimiter));
         } catch (CsvParseException e) {
             throw new CsvParseException("Exception while parsing line " + lineNumber, e);
         }
     }
 
     public String get(int row, int column) {
-        return table.get(column).get(row);
+        return table.get(row).get(column);
     }
 
-    public int getRowCount(int column) {
-        return table.get(column).size();
+    public int getRowCount() {
+        return rowCount;
     }
 
     public int getColumnCount() {
-        return table.size();
+        return columnCount;
     }
 
     public Iterable<String> getRowIterable(int row) {
-        return new Iterable<String>() {
+        return new Iterable<>() {
             @Override
             public @NotNull Iterator<String> iterator() {
-                return new Iterator<String>() {
+                return new Iterator<>() {
                     int column = 0;
 
                     @Override
@@ -63,15 +81,15 @@ public class CsvTable {
     }
 
     public Iterable<String> getColumnIterable(int column) {
-        return new Iterable<String>() {
+        return new Iterable<>() {
             @Override
             public @NotNull Iterator<String> iterator() {
-                return new Iterator<String>() {
+                return new Iterator<>() {
                     int row = 0;
 
                     @Override
                     public boolean hasNext() {
-                        return row < getRowCount(column);
+                        return row < getRowCount();
                     }
 
                     @Override
