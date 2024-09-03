@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft;
+package trfx.mods.wallpapercraft.forge;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +12,5 @@ public class WallpaperCraft {
 
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public WallpaperCraft() {
-    }
+    public WallpaperCraft() { }
 }
