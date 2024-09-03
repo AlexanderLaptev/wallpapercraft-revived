@@ -1,11 +1,12 @@
 package trfx.mods.wallpapercraft.forge;
 
-import com.mojang.logging.LogUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import org.slf4j.Logger;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.Validate;
 import trfx.mods.wallpapercraft.core.pattern.Pattern;
 import trfx.mods.wallpapercraft.core.pattern.PatternLoader;
+import trfx.mods.wallpapercraft.forge.datagen.ModDataGenerator;
 
 import java.util.List;
 
@@ -14,10 +15,12 @@ import java.util.List;
 public class WallpaperCraft {
     public static final String MOD_ID = "wallpapercraft";
 
-    private static final Logger LOGGER = LogUtils.getLogger();
-
     public WallpaperCraft() {
-        LOGGER.debug("Loading patterns");
         List<Pattern> patterns = PatternLoader.load();
+        Validate.notEmpty(patterns, "No patterns have been loaded. Please report to the developers of WallpaperCraft.");
+
+        var modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.register(ModDataGenerator.class);
+        ModInit.register(modBus, patterns);
     }
 }

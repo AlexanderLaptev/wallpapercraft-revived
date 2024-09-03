@@ -4,10 +4,11 @@ import com.google.gson.annotations.SerializedName;
 import trfx.mods.wallpapercraft.core.variant.Variant;
 
 public class Pattern {
-    public enum Type { // New blocks should match the corresponding vanilla ones as close as possible.
+    public enum Type {
         @SerializedName("stone") STONE,
         @SerializedName("lamp") LAMP,
-        @SerializedName("wool") WOOL, // Also generates carpets
+        @SerializedName("wool") WOOL,
+        @SerializedName("carpet") CARPET,
         @SerializedName("glass") GLASS,
         @SerializedName("planks") PLANKS
     }
