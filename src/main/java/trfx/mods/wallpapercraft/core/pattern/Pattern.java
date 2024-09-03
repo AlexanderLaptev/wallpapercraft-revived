@@ -3,9 +3,6 @@ package trfx.mods.wallpapercraft.core.pattern;
 import com.google.gson.annotations.SerializedName;
 import trfx.mods.wallpapercraft.core.variant.Variant;
 
-import java.util.Collections;
-import java.util.Set;
-
 public class Pattern {
     public enum Type { // New blocks should match the corresponding vanilla ones as close as possible.
         @SerializedName("stone") STONE,
