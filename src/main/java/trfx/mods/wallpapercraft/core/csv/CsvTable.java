@@ -13,30 +13,19 @@ public class CsvTable {
      */
     private final List<List<String>> table = new ArrayList<>();
 
-    public CsvTable(String csv) {
-        this(csv, ',');
-    }
-
-    public CsvTable(Iterable<String> csvLines) {
-        this(csvLines, ',');
-    }
-
     public CsvTable(String csv, char delimiter) {
-        this(csv.lines().toList(), delimiter);
-    }
-
-    public CsvTable(Iterable<String> csvLines, char delimiter) {
-        int lineIndex = 0;
-        for (String line : csvLines) {
-            parseRow(line, lineIndex++, delimiter);
+        String[] lines = csv.split("\\r?\\n");
+        int lineNumber = 1;
+        for (String line : lines) {
+            parseRow(line, lineNumber, delimiter);
         }
     }
 
-    private void parseRow(String csvLine, int lineIndex, char delimiter) {
+    private void parseRow(String csvLine, int lineNumber, char delimiter) {
         try {
             table.add(StringSplitter.splitCsvString(csvLine, delimiter));
         } catch (CsvParseException e) {
-            throw new CsvParseException("Exception while parsing line " + (lineIndex + 1), e);
+            throw new CsvParseException("Exception while parsing line " + lineNumber, e);
         }
     }
 
@@ -53,10 +42,10 @@ public class CsvTable {
     }
 
     public Iterable<String> getRowIterable(int row) {
-        return new Iterable<>() {
+        return new Iterable<String>() {
             @Override
             public @NotNull Iterator<String> iterator() {
-                return new Iterator<>() {
+                return new Iterator<String>() {
                     int column = 0;
 
                     @Override
@@ -74,10 +63,10 @@ public class CsvTable {
     }
 
     public Iterable<String> getColumnIterable(int column) {
-        return new Iterable<>() {
+        return new Iterable<String>() {
             @Override
             public @NotNull Iterator<String> iterator() {
-                return new Iterator<>() {
+                return new Iterator<String>() {
                     int row = 0;
 
                     @Override

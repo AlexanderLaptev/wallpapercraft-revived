@@ -21,7 +21,7 @@ public class StringSplitter {
             char c = chars[position];
             if (c == delimiter) {
                 if (!inQuotes) {
-                    result.add(valueBuilder.toString().strip());
+                    result.add(valueBuilder.toString().trim());
                     valueBuilder.setLength(0);
                 } else {
                     valueBuilder.append(c);
@@ -54,7 +54,7 @@ public class StringSplitter {
             position++;
         }
 
-        result.add(valueBuilder.toString().strip());
+        result.add(valueBuilder.toString().trim());
         return result;
     }
 }
