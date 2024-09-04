@@ -33,7 +33,7 @@ public class StringSplitter {
                 } else if (chars[position + 1] == '"') {
                     if (!inQuotes) {
                         throw new CsvParseException(String.format(
-                                "Encountered an escaped quote in an unquoted value at position %d in string '%s'",
+                                "Encountered an escaped quote in an unquoted field at position %d in string '%s'",
                                 position,
                                 csvLine
                         ));
