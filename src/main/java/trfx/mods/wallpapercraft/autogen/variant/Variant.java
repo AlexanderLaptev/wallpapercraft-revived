@@ -1,7 +1,7 @@
-package trfx.mods.wallpapercraft.core.variant;
+package trfx.mods.wallpapercraft.autogen.variant;
 
 import org.apache.commons.lang3.Validate;
-import trfx.mods.wallpapercraft.core.csv.CsvTable;
+import trfx.mods.wallpapercraft.util.csv.CsvTable;
 
 import java.util.*;
 

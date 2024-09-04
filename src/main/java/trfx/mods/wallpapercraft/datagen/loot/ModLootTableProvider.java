@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge.datagen.loot;
+package trfx.mods.wallpapercraft.datagen.loot;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;

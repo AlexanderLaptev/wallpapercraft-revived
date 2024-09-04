@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge.datagen;
+package trfx.mods.wallpapercraft.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;

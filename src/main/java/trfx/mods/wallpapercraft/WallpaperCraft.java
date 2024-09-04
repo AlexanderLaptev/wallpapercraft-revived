@@ -1,12 +1,12 @@
-package trfx.mods.wallpapercraft.forge;
+package trfx.mods.wallpapercraft;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.Validate;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
-import trfx.mods.wallpapercraft.core.pattern.PatternLoader;
-import trfx.mods.wallpapercraft.forge.datagen.ModDataGenerator;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.autogen.pattern.PatternLoader;
+import trfx.mods.wallpapercraft.datagen.ModDataGenerator;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package trfx.mods.wallpapercraft.core.pattern;
+package trfx.mods.wallpapercraft.autogen.pattern;
 
 import com.google.gson.annotations.SerializedName;
-import trfx.mods.wallpapercraft.core.variant.Variant;
+import trfx.mods.wallpapercraft.autogen.variant.Variant;
 
 public class Pattern {
     public enum Type {

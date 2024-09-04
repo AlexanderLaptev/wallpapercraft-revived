@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.core.util;
+package trfx.mods.wallpapercraft.util;
 
 import org.apache.commons.io.IOUtils;
 

@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.core.csv;
+package trfx.mods.wallpapercraft.util.csv;
 
 public class CsvParseException extends RuntimeException {
     public CsvParseException() {

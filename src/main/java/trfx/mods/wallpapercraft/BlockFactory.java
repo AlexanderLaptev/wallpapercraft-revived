@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge;
+package trfx.mods.wallpapercraft;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -6,7 +6,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
 import java.util.function.ToIntFunction;
 

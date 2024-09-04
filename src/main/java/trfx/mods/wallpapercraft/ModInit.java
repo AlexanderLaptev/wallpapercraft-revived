@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge;
+package trfx.mods.wallpapercraft;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.*;
@@ -7,7 +7,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
 import java.util.*;
 

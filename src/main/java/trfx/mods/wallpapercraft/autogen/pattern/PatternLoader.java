@@ -1,17 +1,17 @@
-package trfx.mods.wallpapercraft.core.pattern;
+package trfx.mods.wallpapercraft.autogen.pattern;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import trfx.mods.wallpapercraft.core.util.ResourceHelper;
-import trfx.mods.wallpapercraft.core.variant.VariantCache;
+import trfx.mods.wallpapercraft.util.ResourceHelper;
+import trfx.mods.wallpapercraft.autogen.variant.VariantCache;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class PatternLoader {
-    private static final String PATTERNS_JSON_PATH = "/autogen/patterns.json";
+    private static final String PATTERNS_JSON_PATH = "/autogen_old/patterns.json";
 
     public static List<Pattern> load() {
         String patternsJson = ResourceHelper.getResourceAsString(PATTERNS_JSON_PATH);

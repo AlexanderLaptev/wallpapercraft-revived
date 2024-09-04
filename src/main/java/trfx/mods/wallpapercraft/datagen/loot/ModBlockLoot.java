@@ -1,10 +1,10 @@
-package trfx.mods.wallpapercraft.forge.datagen.loot;
+package trfx.mods.wallpapercraft.datagen.loot;
 
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
-import trfx.mods.wallpapercraft.forge.ModInit;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.ModInit;
 
 public class ModBlockLoot extends BlockLoot {
     @Override

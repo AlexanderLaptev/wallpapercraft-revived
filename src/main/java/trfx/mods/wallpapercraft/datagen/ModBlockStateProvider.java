@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge.datagen;
+package trfx.mods.wallpapercraft.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
@@ -6,8 +6,8 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
-import trfx.mods.wallpapercraft.forge.ModInit;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.ModInit;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(

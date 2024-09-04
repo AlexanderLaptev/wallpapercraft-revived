@@ -1,13 +1,13 @@
-package trfx.mods.wallpapercraft.core.variant;
+package trfx.mods.wallpapercraft.autogen.variant;
 
-import trfx.mods.wallpapercraft.core.csv.CsvTable;
-import trfx.mods.wallpapercraft.core.util.ResourceHelper;
+import trfx.mods.wallpapercraft.util.csv.CsvTable;
+import trfx.mods.wallpapercraft.util.ResourceHelper;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class VariantCache {
-    private static final String VARIANTS_DIR_PATH = "/autogen/variants/";
+    private static final String VARIANTS_DIR_PATH = "/autogen_old/variants/";
 
     private static final Map<String, Variant> CACHE = new HashMap<>();
 

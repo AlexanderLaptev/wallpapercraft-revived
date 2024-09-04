@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.forge.datagen;
+package trfx.mods.wallpapercraft.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -9,8 +9,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
-import trfx.mods.wallpapercraft.core.pattern.Pattern;
-import trfx.mods.wallpapercraft.forge.ModInit;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.ModInit;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(

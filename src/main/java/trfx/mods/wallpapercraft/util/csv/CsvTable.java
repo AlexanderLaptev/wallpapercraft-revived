@@ -1,4 +1,4 @@
-package trfx.mods.wallpapercraft.core.csv;
+package trfx.mods.wallpapercraft.util.csv;
 
 import org.jetbrains.annotations.NotNull;
 

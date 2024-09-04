@@ -1,9 +1,9 @@
-package trfx.mods.wallpapercraft.forge.datagen;
+package trfx.mods.wallpapercraft.datagen;
 
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import trfx.mods.wallpapercraft.forge.WallpaperCraft;
-import trfx.mods.wallpapercraft.forge.datagen.loot.ModLootTableProvider;
+import trfx.mods.wallpapercraft.WallpaperCraft;
+import trfx.mods.wallpapercraft.datagen.loot.ModLootTableProvider;
 
 public class ModDataGenerator {
     @SubscribeEvent
