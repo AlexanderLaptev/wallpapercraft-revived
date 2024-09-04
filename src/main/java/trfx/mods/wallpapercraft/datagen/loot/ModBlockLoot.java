@@ -3,19 +3,16 @@ package trfx.mods.wallpapercraft.datagen.loot;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 import trfx.mods.wallpapercraft.ModInit;
 
 public class ModBlockLoot extends BlockLoot {
     @Override
     protected void addTables() {
-        for (var entry : ModInit.MOD_BLOCKS_BY_TYPE.entrySet()) {
-            for (RegistryObject<Block> block : entry.getValue()) {
-                if (entry.getKey() == Pattern.Type.GLASS) {
-                    dropWhenSilkTouch(block.get());
-                } else {
-                    dropSelf(block.get());
-                }
+        for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+            ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
+            switch (info.pattern.getMaterial()) {
+                case GLASS, LAMP -> dropWhenSilkTouch(regObject.get());
+                default -> dropSelf(regObject.get());
             }
         }
     }

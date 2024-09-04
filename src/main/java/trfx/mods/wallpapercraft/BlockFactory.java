@@ -3,7 +3,10 @@ package trfx.mods.wallpapercraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CarpetBlock;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
@@ -15,15 +18,9 @@ public class BlockFactory {
 
     private static final ToIntFunction<BlockState> LIGHT_BLOCK_FUNCTION = (state) -> 15;
 
-    public static Block makeBlockForType(Pattern.Type type) {
-        return switch (type) {
-            case STONE -> makeBasicBlock(Blocks.STONE, false);
-            case GLASS -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS));
-            case WOOL -> makeBasicBlock(Blocks.WHITE_WOOL, false);
-            case LAMP -> makeBasicBlock(Blocks.STONE, true);
-            case PLANKS -> makeBasicBlock(Blocks.OAK_PLANKS, false);
-
-            case CARPET -> new CarpetBlock(
+    public static Block makeBlock(Pattern pattern, Pattern.ModelType modelType) {
+        if (modelType == Pattern.ModelType.CARPET) {
+            return new CarpetBlock(
                     BlockBehaviour.Properties
                             .copy(Blocks.WHITE_CARPET)
             ) {
@@ -41,6 +38,21 @@ public class BlockFactory {
                     return fireSpreadSpeed;
                 }
             };
+        } else {
+            return makeBasicBlock(
+                    getTemplateForMaterial(pattern.getMaterial()),
+                    pattern.getMaterial() == Pattern.Material.LAMP
+            );
+        }
+    }
+
+    private static Block getTemplateForMaterial(Pattern.Material material) {
+        return switch (material) {
+            case STONE -> Blocks.STONE;
+            case WOOL -> Blocks.WHITE_WOOL;
+            case LAMP -> Blocks.GLOWSTONE;
+            case GLASS -> Blocks.GLASS;
+            case PLANKS -> Blocks.OAK_PLANKS;
         };
     }
 
@@ -66,10 +78,12 @@ public class BlockFactory {
         };
     }
 
+    @SuppressWarnings("deprecation")
     private static int getFlammabilityFromFire(Block block) {
         return ((FireBlock) Blocks.FIRE).getBurnOdds(block.defaultBlockState());
     }
 
+    @SuppressWarnings("deprecation")
     private static int getFireSpreadSpeedFromFire(Block block) {
         return ((FireBlock) Blocks.FIRE).getIgniteOdds(block.defaultBlockState());
     }

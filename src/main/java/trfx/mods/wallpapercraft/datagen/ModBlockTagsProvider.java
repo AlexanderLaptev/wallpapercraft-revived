@@ -9,8 +9,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
-import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 import trfx.mods.wallpapercraft.ModInit;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(
@@ -21,44 +21,42 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         super(pGenerator, modId, existingFileHelper);
     }
 
+    @SuppressWarnings("DataFlowIssue")
     @Override
     protected void addTags() {
-        // Wool
         var woolTag = tag(BlockTags.WOOL);
         var occludesVibrationsTag = tag(BlockTags.OCCLUDES_VIBRATION_SIGNALS);
-        for (RegistryObject<Block> woolLike : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.WOOL)) {
-            woolTag.add(woolLike.get());
-            occludesVibrationsTag.add(woolLike.get());
-        }
-
-        // Carpet
         var carpetsTag = tag(BlockTags.WOOL_CARPETS);
-        for (RegistryObject<Block> carpet : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.CARPET)) {
-            carpetsTag.add(carpet.get());
-        }
-
-        // Glass
         var impermeableTag = tag(BlockTags.IMPERMEABLE);
         var glassTag = tag(ForgeRegistries.BLOCKS.tags().createTagKey(new ResourceLocation("forge:glass")));
-        for (RegistryObject<Block> carpet : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.GLASS)) {
-            impermeableTag.add(carpet.get());
-        }
-
-        // Planks
         var planksTag = tag(BlockTags.PLANKS);
         var mineableWithAxeTag = tag(BlockTags.MINEABLE_WITH_AXE);
-        for (RegistryObject<Block> planks : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.PLANKS)) {
-            planksTag.add(planks.get());
-            mineableWithAxeTag.add(planks.get());
-        }
-
-        // Normal and lamp
         var mineableWithPickaxeTag = tag(BlockTags.MINEABLE_WITH_PICKAXE);
-        for (RegistryObject<Block> block : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.STONE)) {
-            mineableWithPickaxeTag.add(block.get());
-        }
-        for (RegistryObject<Block> block : ModInit.MOD_BLOCKS_BY_TYPE.get(Pattern.Type.LAMP)) {
-            mineableWithPickaxeTag.add(block.get());
+
+        for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+            ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
+            Block block = regObject.get();
+
+            if (info.modelType == Pattern.ModelType.CARPET) {
+                carpetsTag.add(block);
+            } else {
+                switch (info.pattern.getMaterial()) {
+                    case STONE -> mineableWithPickaxeTag.add(block);
+                    case WOOL -> {
+                        woolTag.add(block);
+                        occludesVibrationsTag.add(block);
+                    }
+                    case GLASS -> {
+                        impermeableTag.add(block);
+                        glassTag.add(block);
+                    }
+                    case PLANKS -> {
+                        planksTag.add(block);
+                        mineableWithAxeTag.add(block);
+                    }
+                }
+            }
+
         }
     }
 }

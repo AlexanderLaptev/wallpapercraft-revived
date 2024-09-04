@@ -1,30 +1,8 @@
-{
-  "jewel": {
-    "type": "stone",
-    "variant": "special"
-  },
-  "solid": {
-    "type": "stone",
-    "variant": "standard"
-  },
-  "wool": {
-    "type": "wool",
-    "variant": "standard"
-  },
-  "texturedglass": {
-    "type": "glass",
-    "variant": "standard"
-  },
-  "woodplank": {
-    "type": "planks",
-    "variant": "standard"
-  },
-  "auralamp": {
-    "type": "lamp",
-    "variant": "standard"
-  },
-  "honeycomb": {
-    "type": "stone",
-    "variant": "forestry"
+[
+  {
+    "name": "jewel",
+    "variants": "special",
+    "material": "stone",
+    "models": ["cube"]
   }
-}
+]

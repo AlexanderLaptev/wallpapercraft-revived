@@ -8,10 +8,25 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.autogen.variant.VariantList;
+import trfx.mods.wallpapercraft.autogen.variant.VariantListCache;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModInit {
+    public static final class BlockInfo {
+        public final Pattern pattern;
+        public final VariantList.Variant variant;
+        public final Pattern.ModelType modelType;
+
+        public BlockInfo(Pattern pattern, VariantList.Variant variant, Pattern.ModelType modelType) {
+            this.pattern = pattern;
+            this.variant = variant;
+            this.modelType = modelType;
+        }
+    }
+
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
             ForgeRegistries.BLOCKS,
             WallpaperCraft.MOD_ID
@@ -22,7 +37,9 @@ public class ModInit {
             WallpaperCraft.MOD_ID
     );
 
-    public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab(makeTabName("blocks")) {
+    // TODO: sort
+    // TODO: localize
+    public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab(WallpaperCraft.MOD_ID + ".blocks") {
         private static final ItemStack ICON_STACK = new ItemStack(Items.STONE);
 
         @Override
@@ -36,37 +53,47 @@ public class ModInit {
         }
     };
 
-    public static final Map<Pattern.Type, Collection<RegistryObject<Block>>> MOD_BLOCKS_BY_TYPE = new HashMap<>();
+    public static final Map<RegistryObject<Block>, BlockInfo> BLOCK_INFO = new HashMap<>();
 
-    static {
-        for (Pattern.Type type : Pattern.Type.values()) {
-            MOD_BLOCKS_BY_TYPE.put(type, new ArrayList<>());
-        }
-    }
-
-    public static void register(IEventBus bus, List<Pattern> patterns) {
+    public static void register(IEventBus bus, Map<String, Pattern> patterns) {
         BLOCKS.register(bus);
         ITEMS.register(bus);
 
-        for (Pattern pattern : patterns) {
-            Set<String> internalNames = pattern.getVariant().getInternalNames();
-            for (String variantName : internalNames) {
-                String registryName = makeBlockName(pattern.getName(), variantName);
-                RegistryObject<Block> block = BLOCKS.register(
-                        registryName,
-                        () -> BlockFactory.makeBlockForType(pattern.getType())
-                );
-                ITEMS.register(registryName, () -> new BlockItem(block.get(), new Item.Properties().tab(BLOCKS_TAB)));
-                MOD_BLOCKS_BY_TYPE.get(pattern.getType()).add(block);
+        for (var pattern : patterns.values()) {
+            VariantList variantList = VariantListCache.getVariantList(pattern.getVariantListName());
+            for (VariantList.Variant variant : variantList.getVariants().values()) {
+                for (Pattern.ModelType modelType : pattern.getModelTypes()) {
+                    String blockName = makeBlockName(
+                            pattern.getName(),
+                            variant.getInternalName(),
+                            modelType.getSuffix()
+                    );
+                    RegistryObject<Block> block = BLOCKS.register(
+                            blockName,
+                            () -> BlockFactory.makeBlock(pattern, modelType)
+                    );
+                    ITEMS.register(blockName, () -> makeBlockItemForBlock(block.get()));
+                    BLOCK_INFO.put(block, new BlockInfo(pattern, variant, modelType));
+                }
             }
         }
     }
 
-    private static String makeBlockName(String pattern, String variant) {
-        return variant.isBlank() ? pattern : variant + "_" + pattern;
+    private static String makeBlockName(String pattern, String variant, String modelSuffix) {
+        StringBuilder sb = new StringBuilder();
+        if (!variant.isBlank()) {
+            sb.append(variant);
+            sb.append("_");
+        }
+        sb.append(pattern);
+        if (!modelSuffix.isBlank()) {
+            sb.append("_");
+            sb.append(modelSuffix);
+        }
+        return sb.toString();
     }
 
-    private static String makeTabName(String name) {
-        return WallpaperCraft.MOD_ID + "." + name;
+    private static BlockItem makeBlockItemForBlock(Block block) {
+        return new BlockItem(block, new Item.Properties().tab(BLOCKS_TAB));
     }
 }

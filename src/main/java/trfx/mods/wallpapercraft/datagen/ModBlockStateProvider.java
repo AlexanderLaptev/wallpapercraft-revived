@@ -1,13 +1,17 @@
 package trfx.mods.wallpapercraft.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import org.apache.commons.lang3.StringUtils;
 import trfx.mods.wallpapercraft.ModInit;
+import trfx.mods.wallpapercraft.WallpaperCraft;
+import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(
@@ -20,22 +24,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        for (var entry : ModInit.MOD_BLOCKS_BY_TYPE.entrySet()) {
-            for (RegistryObject<Block> regObject : entry.getValue()) {
-                Block block = regObject.get();
+        for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+            Block block = regObject.get();
+            ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
 
-                ModelFile model;
-                if (entry.getKey() == Pattern.Type.CARPET) {
-                    model = models().carpet(regObject.getId().getPath(), blockTexture(block));
-                } else if (entry.getKey() == Pattern.Type.GLASS) {
-                    model = models().cubeAll(regObject.getId().getPath(), blockTexture(block)).renderType("minecraft:translucent");
-                } else {
-                    model = cubeAll(block);
-                }
-
-                simpleBlock(block);
-                simpleBlockItem(block, model);
+            BlockModelBuilder model;
+            if (info.modelType == Pattern.ModelType.CARPET) {
+                model = models().carpet(
+                        regObject.getId().getPath(),
+                        new ResourceLocation(
+                                WallpaperCraft.MOD_ID,
+                                ModelProvider.BLOCK_FOLDER + "/" + StringUtils.removeEnd(
+                                        regObject.getId().getPath(),
+                                        "_" + Pattern.ModelType.CARPET.getSuffix()
+                                )
+                        )
+                );
+            } else {
+                model = models().cubeAll(regObject.getId().getPath(), blockTexture(block));
             }
+
+            if (info.pattern.getMaterial() == Pattern.Material.GLASS) {
+                model.renderType("minecraft:translucent");
+            }
+
+            simpleBlock(block, model);
+            simpleBlockItem(block, model);
         }
     }
 }
