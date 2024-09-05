@@ -9,7 +9,7 @@ import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.StringUtils;
-import trfx.mods.wallpapercraft.ModInit;
+import trfx.mods.wallpapercraft.init.ModBlocks;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
@@ -24,10 +24,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+        for (RegistryObject<Block> regObject : ModBlocks.BLOCKS.getEntries()) {
             WallpaperCraft.LOGGER.debug("Adding model for '{}'", regObject.getId());
             Block block = regObject.get();
-            ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
+            ModBlocks.BlockInfo info = ModBlocks.BLOCK_INFO.get(regObject);
 
             BlockModelBuilder model;
             if (info.modelType == Pattern.ModelType.CARPET) {

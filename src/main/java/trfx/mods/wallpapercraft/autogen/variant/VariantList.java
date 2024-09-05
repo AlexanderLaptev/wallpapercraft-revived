@@ -5,7 +5,7 @@ import org.apache.commons.lang3.Validate;
 import trfx.mods.wallpapercraft.util.csv.CsvTable;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class VariantList {
@@ -60,7 +60,7 @@ public class VariantList {
     public VariantList(CsvTable csvTable) {
         validateTable(csvTable);
 
-        var variants = new HashMap<String, Variant>();
+        var variants = new LinkedHashMap<String, Variant>();
         for (int row = 1; row < csvTable.getRowCount(); row++) {
             parseTableRow(csvTable, row, variants);
         }

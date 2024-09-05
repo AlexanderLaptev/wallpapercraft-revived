@@ -7,7 +7,7 @@ import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.util.ResourceHelper;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PatternLoader {
@@ -19,7 +19,7 @@ public class PatternLoader {
         Gson gson = new Gson();
         JsonArray jsonArray = gson.fromJson(json, JsonArray.class);
 
-        Map<String, Pattern> patterns = new HashMap<>();
+        Map<String, Pattern> patterns = new LinkedHashMap<>();
         for (JsonElement element : jsonArray) {
             var pattern = Pattern.fromJson(element.getAsJsonObject());
             patterns.put(pattern.getName(), pattern);

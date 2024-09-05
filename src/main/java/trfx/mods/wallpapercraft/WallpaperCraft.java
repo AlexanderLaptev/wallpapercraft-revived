@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 import trfx.mods.wallpapercraft.autogen.pattern.PatternLoader;
 import trfx.mods.wallpapercraft.datagen.ModDataGenerator;
+import trfx.mods.wallpapercraft.init.ModBlocks;
+import trfx.mods.wallpapercraft.init.ModItems;
 
 import java.util.Map;
 
@@ -19,12 +21,14 @@ public class WallpaperCraft {
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final Map<String, Pattern> patterns = PatternLoader.load();
+
     public WallpaperCraft() {
-        Map<String, Pattern> patterns = PatternLoader.load();
         Validate.notEmpty(patterns, "No patterns have been loaded. Please report to the developers of WallpaperCraft.");
 
         var modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.register(ModDataGenerator.class);
-        ModInit.register(modBus, patterns);
+        ModItems.register(modBus);
+        ModBlocks.register(modBus);
     }
 }
