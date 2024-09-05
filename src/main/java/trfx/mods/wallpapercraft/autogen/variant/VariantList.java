@@ -69,8 +69,8 @@ public class VariantList {
     }
 
     private static void validateTable(CsvTable csvTable) {
-        Validate.isTrue(csvTable.getRowCount() == 2, "Variant table must only contain two rows");
-        Validate.isTrue(csvTable.getColumnCount() >= 2, "At least one variant must be specified in variant table");
+        Validate.isTrue(csvTable.getColumnCount() == 2, "Variant table must only contain two columns");
+        Validate.isTrue(csvTable.getRowCount() >= 2, "At least one variant must be specified in variant table");
         Validate.isTrue("name".equals(csvTable.get(0, 0)), "Column `name` not found in variant table");
         Validate.isTrue("paint".equals(csvTable.get(0, 1)), "Column `paint` not found in variant table");
     }

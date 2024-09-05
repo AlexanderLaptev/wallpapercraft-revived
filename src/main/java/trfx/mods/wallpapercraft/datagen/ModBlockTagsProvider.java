@@ -10,6 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import trfx.mods.wallpapercraft.ModInit;
+import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
@@ -34,6 +35,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         var mineableWithPickaxeTag = tag(BlockTags.MINEABLE_WITH_PICKAXE);
 
         for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+            WallpaperCraft.LOGGER.debug("Adding tags for '{}'", regObject.getId());
             ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
             Block block = regObject.get();
 

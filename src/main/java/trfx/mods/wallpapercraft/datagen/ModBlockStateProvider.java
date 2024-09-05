@@ -25,6 +25,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         for (RegistryObject<Block> regObject : ModInit.BLOCKS.getEntries()) {
+            WallpaperCraft.LOGGER.debug("Adding model for '{}'", regObject.getId());
             Block block = regObject.get();
             ModInit.BlockInfo info = ModInit.BLOCK_INFO.get(regObject);
 

@@ -74,6 +74,7 @@ public class ModInit {
                     );
                     ITEMS.register(blockName, () -> makeBlockItemForBlock(block.get()));
                     BLOCK_INFO.put(block, new BlockInfo(pattern, variant, modelType));
+                    WallpaperCraft.LOGGER.debug("Registered block '{}'", block.getId());
                 }
             }
         }

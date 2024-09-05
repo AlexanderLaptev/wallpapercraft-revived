@@ -8,6 +8,7 @@ import trfx.mods.wallpapercraft.datagen.loot.ModLootTableProvider;
 public class ModDataGenerator {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        WallpaperCraft.LOGGER.debug("Registering data providers");
         event.getGenerator().addProvider(
                 event.includeServer(),
                 new ModBlockTagsProvider(event.getGenerator(), WallpaperCraft.MOD_ID, event.getExistingFileHelper())

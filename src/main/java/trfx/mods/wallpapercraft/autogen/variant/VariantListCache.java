@@ -1,5 +1,6 @@
 package trfx.mods.wallpapercraft.autogen.variant;
 
+import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.util.ResourceHelper;
 import trfx.mods.wallpapercraft.util.csv.CsvTable;
 
@@ -14,6 +15,7 @@ public class VariantListCache {
     }
 
     private static VariantList loadVariantList(String name) {
+        WallpaperCraft.LOGGER.debug("Loading variant '{}'", name);
         String csv = ResourceHelper.getResourceAsString("/autogen/variants/" + name + ".csv");
         return new VariantList(new CsvTable(csv));
     }
