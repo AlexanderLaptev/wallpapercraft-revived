@@ -25,9 +25,10 @@ public class CsvTable {
         if (csv.isBlank()) {
             throw new CsvParseException("Blank CSV string, nothing to parse");
         }
-        String[] lines = csv.split("\\r?\\n");
+        String[] lines = csv.lines().toArray(String[]::new);
         int lineIndex = 0;
         for (String line : lines) {
+            if (line.isBlank()) { continue; }
             parseRow(line, lineIndex + 1, delimiter);
             lineIndex++;
         }

@@ -20,7 +20,7 @@ public class StringSplitter {
             char c = chars[position];
             if (c == delimiter) {
                 if (!inQuotes) {
-                    result.add(valueBuilder.toString().trim());
+                    result.add(valueBuilder.toString());
                     valueBuilder.setLength(0);
                 } else {
                     valueBuilder.append(c);
@@ -53,7 +53,7 @@ public class StringSplitter {
             position++;
         }
 
-        result.add(valueBuilder.toString().trim());
+        result.add(valueBuilder.toString());
         return result;
     }
 }
