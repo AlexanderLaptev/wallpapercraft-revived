@@ -21,7 +21,7 @@ public class ModItems {
     );
 
     public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab(WallpaperCraft.MOD_ID + ".blocks") {
-        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "red_jewel");
+        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "jewel_red");
 
         @Override
         public void fillItemList(NonNullList<ItemStack> items) {

@@ -54,12 +54,11 @@ public class ModBlocks {
     }
 
     public static String makeBlockName(String pattern, String variant, String modelSuffix) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(pattern);
         if (!variant.isBlank()) {
-            sb.append(variant);
             sb.append("_");
+            sb.append(variant);
         }
-        sb.append(pattern);
         if (!modelSuffix.isBlank()) {
             sb.append("_");
             sb.append(modelSuffix);
