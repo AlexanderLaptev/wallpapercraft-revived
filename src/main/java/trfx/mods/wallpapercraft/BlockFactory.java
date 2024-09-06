@@ -53,6 +53,7 @@ public class BlockFactory {
             case LAMP -> Blocks.GLOWSTONE;
             case GLASS -> Blocks.GLASS;
             case PLANKS -> Blocks.OAK_PLANKS;
+            case BRICKS -> Blocks.BRICKS;
         };
     }
 

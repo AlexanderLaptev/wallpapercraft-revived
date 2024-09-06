@@ -12,6 +12,7 @@ import java.util.Set;
 public final class Pattern {
     public enum Material {
         @SerializedName("stone") STONE,
+        @SerializedName("bricks") BRICKS,
         @SerializedName("wool") WOOL,
         @SerializedName("lamp") LAMP,
         @SerializedName("glass") GLASS,
