@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.StringUtils;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.block.WallpaperBlock;
 import trfx.mods.wallpapercraft.init.ModBlocks;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -25,12 +26,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         for (RegistryObject<Block> regObject : ModBlocks.BLOCKS.getEntries()) {
+            if (!(regObject.get() instanceof WallpaperBlock modBlock)) { continue; }
             WallpaperCraft.LOGGER.debug("Adding model for '{}'", regObject.getId());
-            Block block = regObject.get();
-            ModBlocks.BlockInfo info = ModBlocks.BLOCK_INFO.get(regObject);
 
             BlockModelBuilder model;
-            if (info.modelType == Pattern.ModelType.CARPET) {
+            if (modBlock.getModelType() == Pattern.ModelType.CARPET) {
                 model = models().carpet(
                         regObject.getId().getPath(),
                         new ResourceLocation(
@@ -42,15 +42,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         )
                 );
             } else {
-                model = models().cubeAll(regObject.getId().getPath(), blockTexture(block));
+                model = models().cubeAll(regObject.getId().getPath(), blockTexture(modBlock));
             }
 
-            if (info.pattern.getMaterial() == Pattern.Material.GLASS) {
+            if (modBlock.getPattern().getMaterial() == Pattern.Material.GLASS) {
                 model.renderType("minecraft:translucent");
             }
 
-            simpleBlock(block, model);
-            simpleBlockItem(block, model);
+            simpleBlock(modBlock, model);
+            simpleBlockItem(modBlock, model);
         }
     }
 }

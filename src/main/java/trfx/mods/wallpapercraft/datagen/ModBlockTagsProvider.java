@@ -11,6 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.block.WallpaperBlock;
 import trfx.mods.wallpapercraft.init.ModBlocks;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
@@ -35,14 +36,14 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         var mineableWithPickaxeTag = tag(BlockTags.MINEABLE_WITH_PICKAXE);
 
         for (RegistryObject<Block> regObject : ModBlocks.BLOCKS.getEntries()) {
+            if (!(regObject.get() instanceof WallpaperBlock modBlock)) { continue; }
             WallpaperCraft.LOGGER.debug("Adding tags for '{}'", regObject.getId());
-            ModBlocks.BlockInfo info = ModBlocks.BLOCK_INFO.get(regObject);
             Block block = regObject.get();
 
-            if (info.modelType == Pattern.ModelType.CARPET) {
+            if (modBlock.getModelType() == Pattern.ModelType.CARPET) {
                 carpetsTag.add(block);
             } else {
-                switch (info.pattern.getMaterial()) {
+                switch (modBlock.getPattern().getMaterial()) {
                     case STONE -> mineableWithPickaxeTag.add(block);
                     case WOOL -> {
                         woolTag.add(block);
