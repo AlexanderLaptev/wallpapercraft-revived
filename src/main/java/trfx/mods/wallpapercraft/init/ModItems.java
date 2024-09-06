@@ -20,7 +20,7 @@ public class ModItems {
     );
 
     public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab(WallpaperCraft.MOD_ID + ".blocks") {
-//        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "");
+        //        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "");
         private static final ResourceLocation ICON_LOCATION = new ResourceLocation("minecraft:stone");
 
         @Override

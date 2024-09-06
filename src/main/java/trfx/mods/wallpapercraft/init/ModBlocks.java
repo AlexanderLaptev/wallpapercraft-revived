@@ -5,9 +5,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.block.BlockFactory;
 import trfx.mods.wallpapercraft.PatternIterator;
 import trfx.mods.wallpapercraft.WallpaperCraft;
+import trfx.mods.wallpapercraft.block.BlockFactory;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(

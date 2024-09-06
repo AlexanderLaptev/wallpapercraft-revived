@@ -29,7 +29,10 @@ public class VariantsDefinitionCache {
 
         CACHE = new LinkedHashMap<>();
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-            VariantsDefinition variantsDefinition = VariantsDefinition.fromJson(entry.getKey(), entry.getValue().getAsJsonArray());
+            VariantsDefinition variantsDefinition = VariantsDefinition.fromJson(
+                    entry.getKey(),
+                    entry.getValue().getAsJsonArray()
+            );
             CACHE.put(variantsDefinition.getId(), variantsDefinition);
             WallpaperCraft.LOGGER.debug("Loaded variant definition: {}", variantsDefinition.getId());
         }

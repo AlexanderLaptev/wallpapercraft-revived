@@ -3,8 +3,8 @@ package trfx.mods.wallpapercraft.autogen.pattern;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinitionCache;
 import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinition;
+import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinitionCache;
 
 import java.util.Collections;
 import java.util.HashSet;
