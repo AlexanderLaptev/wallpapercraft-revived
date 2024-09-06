@@ -10,8 +10,8 @@ public class PatternIterator {
 
     public static void iteratePatterns(Action action) {
         for (Pattern pattern : WallpaperCraft.patterns.values()) {
-            for (String variant : pattern.getVariantsDefinition().getVariants()) {
-                for (Pattern.ModelType modelType : pattern.getModelTypes()) {
+            for (Pattern.ModelType modelType : pattern.getModelTypes()) {
+                for (String variant : pattern.getVariantsDefinition().getVariants()) {
                     action.execute(pattern, variant, modelType);
                 }
             }

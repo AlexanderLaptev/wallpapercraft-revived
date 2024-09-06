@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.PatternIterator;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 
 public class ModItems {
@@ -26,19 +25,21 @@ public class ModItems {
 
         @Override
         public void fillItemList(NonNullList<ItemStack> items) {
-            PatternIterator.iteratePatterns(((pattern, variant, modelType) -> {
-                Item blockItem = ForgeRegistries.ITEMS.getValue(
-                        new ResourceLocation(
-                                WallpaperCraft.MOD_ID,
-                                ModBlocks.makeBlockName(
-                                        pattern.getName(),
-                                        variant,
-                                        modelType.getSuffix()
-                                )
-                        )
-                );
-                items.add(new ItemStack(blockItem));
-            }));
+            CreativeTabFiller.fillBlocksTab(items);
+//            PatternIterator.iteratePatterns(((pattern, variant, modelType) -> {
+//                if (modelType != Pattern.ModelType.CUBE) return;
+//                Item blockItem = ForgeRegistries.ITEMS.getValue(
+//                        new ResourceLocation(
+//                                WallpaperCraft.MOD_ID,
+//                                ModBlocks.makeBlockName(
+//                                        pattern.getName(),
+//                                        variant,
+//                                        modelType.getSuffix()
+//                                )
+//                        )
+//                );
+//                items.add(new ItemStack(blockItem));
+//            }));
         }
 
         @Override
