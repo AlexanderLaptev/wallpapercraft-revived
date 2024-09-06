@@ -21,5 +21,9 @@ public class ModDataGenerator {
                 event.includeClient(),
                 new ModBlockStateProvider(event.getGenerator(), WallpaperCraft.MOD_ID, event.getExistingFileHelper())
         );
+        event.getGenerator().addProvider(
+                event.includeClient(),
+                new ModLanguageProvider(event.getGenerator(), WallpaperCraft.MOD_ID, "template")
+        );
     }
 }
