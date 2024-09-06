@@ -21,7 +21,8 @@ public class ModItems {
     );
 
     public static final CreativeModeTab BLOCKS_TAB = new CreativeModeTab(WallpaperCraft.MOD_ID + ".blocks") {
-        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "jewel_red");
+//        private static final ResourceLocation ICON_LOCATION = new ResourceLocation(WallpaperCraft.MOD_ID, "");
+        private static final ResourceLocation ICON_LOCATION = new ResourceLocation("minecraft:stone");
 
         @Override
         public void fillItemList(NonNullList<ItemStack> items) {
@@ -31,7 +32,7 @@ public class ModItems {
                                 WallpaperCraft.MOD_ID,
                                 ModBlocks.makeBlockName(
                                         pattern.getName(),
-                                        variant.getInternalName(),
+                                        variant,
                                         modelType.getSuffix()
                                 )
                         )

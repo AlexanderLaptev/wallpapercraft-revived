@@ -3,6 +3,8 @@ package trfx.mods.wallpapercraft.autogen.pattern;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
+import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinitionCache;
+import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinition;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,25 +33,24 @@ public final class Pattern {
     }
 
     private final String name;
-    private final String variantListName;
+    private final VariantsDefinition definition;
     private final Material material;
     private final Set<ModelType> modelTypes;
 
     public Pattern(
             String name,
-            String variantListName,
+            VariantsDefinition definition,
             Material material,
             Set<ModelType> modelTypes
     ) {
         this.name = name;
-        this.variantListName = variantListName;
+        this.definition = definition;
         this.material = material;
         this.modelTypes = modelTypes;
     }
 
-    public static Pattern fromJson(JsonObject object) {
-        String name = object.get("name").getAsString();
-        String variantsList = object.get("variants").getAsString();
+    public static Pattern fromJson(String name, JsonObject object) {
+        VariantsDefinition variantsDefinition = VariantsDefinitionCache.getForName(object.get("variants").getAsString());
         Material material = Material.valueOf(object.get("material").getAsString().toUpperCase());
 
         Set<ModelType> modelTypes = new HashSet<>();
@@ -58,12 +59,12 @@ public final class Pattern {
             modelTypes.add(ModelType.valueOf(element.getAsString().toUpperCase()));
         }
 
-        return new Pattern(name, variantsList, material, Collections.unmodifiableSet(modelTypes));
+        return new Pattern(name, variantsDefinition, material, Collections.unmodifiableSet(modelTypes));
     }
 
     public String getName() { return name; }
 
-    public String getVariantListName() { return variantListName; }
+    public VariantsDefinition getVariantsDefinition() { return definition; }
 
     public Material getMaterial() { return material; }
 
@@ -75,21 +76,21 @@ public final class Pattern {
         if (obj == null || obj.getClass() != this.getClass()) { return false; }
         var that = (Pattern) obj;
         return Objects.equals(this.name, that.name) &&
-                Objects.equals(this.variantListName, that.variantListName) &&
+                Objects.equals(this.definition, that.definition) &&
                 Objects.equals(this.material, that.material) &&
                 Objects.equals(this.modelTypes, that.modelTypes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, variantListName, material, modelTypes);
+        return Objects.hash(name, definition, material, modelTypes);
     }
 
     @Override
     public String toString() {
         return "Pattern[" +
                 "name=" + name + ", " +
-                "variantListName=" + variantListName + ", " +
+                "variantListName=" + definition + ", " +
                 "material=" + material + ", " +
                 "modelTypes=" + modelTypes + ']';
     }

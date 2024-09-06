@@ -2,10 +2,9 @@ package trfx.mods.wallpapercraft.block;
 
 import net.minecraft.world.level.block.Blocks;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
-import trfx.mods.wallpapercraft.autogen.variant.VariantList;
 
 public class BlockFactory {
-    public static WallpaperBlock makeBlock(Pattern pattern, VariantList.Variant variant, Pattern.ModelType modelType) {
+    public static WallpaperBlock makeBlock(Pattern pattern, String variant, Pattern.ModelType modelType) {
         if (modelType == Pattern.ModelType.CARPET) {
             return new CarpetWallpaperBlock(
                     pattern,

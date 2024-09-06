@@ -11,12 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
-import trfx.mods.wallpapercraft.autogen.variant.VariantList;
 
 public class CarpetWallpaperBlock extends WallpaperBlock {
     public CarpetWallpaperBlock(
             Pattern pattern,
-            VariantList.Variant variant,
+            String variant,
             Block template,
             boolean emitsLight
     ) {

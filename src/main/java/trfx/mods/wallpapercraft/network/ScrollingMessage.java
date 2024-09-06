@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import trfx.mods.wallpapercraft.WallpaperCraft;
-import trfx.mods.wallpapercraft.autogen.variant.VariantList;
+import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinition;
 import trfx.mods.wallpapercraft.block.WallpaperBlock;
 
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class ScrollingMessage {
 
             if (optional.isEmpty()) { return; }
             WallpaperBlock modBlock = optional.get();
-            VariantList.Variant newVariant = modBlock.scrollVariant(direction);
+            String newVariant = modBlock.scrollVariant(direction);
             String newName = WallpaperBlock.getRegistryName(modBlock.getPattern(), newVariant, modBlock.getModelType());
             Item newItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(WallpaperCraft.MOD_ID, newName));
             inventory.setItem(inventory.selected, new ItemStack(newItem));

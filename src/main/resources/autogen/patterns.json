@@ -1,8 +1,7 @@
-[
-  {
-    "name": "jewel",
-    "variants": "special",
+{
+  "solid": {
     "material": "stone",
-    "models": ["cube"]
+    "variants": "standard",
+    "models": ["cube", "carpet"]
   }
-]
+}

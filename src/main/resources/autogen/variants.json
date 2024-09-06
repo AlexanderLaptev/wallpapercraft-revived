@@ -1,0 +1,44 @@
+{
+  "standard": [
+    {
+      "colors": "r",
+      "variants": [
+        "red_0",
+        "red_1",
+        "red_2",
+        "red_3",
+        "red_4",
+        "red_5",
+        "red_6",
+        "red_7",
+        "red_8",
+        "red_9",
+        "red_10",
+        "red_11",
+        "red_12",
+        "red_13",
+        "red_14"
+      ]
+    },
+    {
+      "colors": "b",
+      "variants": [
+        "blue_0",
+        "blue_1",
+        "blue_2",
+        "blue_3",
+        "blue_4",
+        "blue_5",
+        "blue_6",
+        "blue_7",
+        "blue_8",
+        "blue_9",
+        "blue_10",
+        "blue_11",
+        "blue_12",
+        "blue_13",
+        "blue_14"
+      ]
+    }
+  ]
+}

@@ -9,12 +9,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
-import trfx.mods.wallpapercraft.autogen.variant.VariantList;
 
 public class GlassWallpaperBlock extends WallpaperBlock {
     public GlassWallpaperBlock(
             Pattern pattern,
-            VariantList.Variant variant,
+            String variant,
             Pattern.ModelType modelType,
             boolean emitsLight
     ) {

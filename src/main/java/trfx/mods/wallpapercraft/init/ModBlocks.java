@@ -20,7 +20,7 @@ public class ModBlocks {
         PatternIterator.iteratePatterns((pattern, variant, modelType) -> {
             String blockName = makeBlockName(
                     pattern.getName(),
-                    variant.getInternalName(),
+                    variant,
                     modelType.getSuffix()
             );
             RegistryObject<Block> block = BLOCKS.register(
