@@ -5,7 +5,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.BlockFactory;
+import trfx.mods.wallpapercraft.block.BlockFactory;
 import trfx.mods.wallpapercraft.PatternIterator;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
@@ -45,7 +45,7 @@ public class ModBlocks {
             );
             RegistryObject<Block> block = BLOCKS.register(
                     blockName,
-                    () -> BlockFactory.makeBlock(pattern, modelType)
+                    () -> BlockFactory.makeBlock(pattern, variant, modelType)
             );
             ModItems.registerBlockItem(blockName, block);
             BLOCK_INFO.put(block, new BlockInfo(pattern, variant, modelType));
