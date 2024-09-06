@@ -9,9 +9,9 @@ import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.StringUtils;
-import trfx.mods.wallpapercraft.init.ModBlocks;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
+import trfx.mods.wallpapercraft.init.ModBlocks;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(

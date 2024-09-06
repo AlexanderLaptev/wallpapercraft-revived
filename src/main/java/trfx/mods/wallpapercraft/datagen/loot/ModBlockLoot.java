@@ -3,8 +3,8 @@ package trfx.mods.wallpapercraft.datagen.loot;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import trfx.mods.wallpapercraft.init.ModBlocks;
 import trfx.mods.wallpapercraft.WallpaperCraft;
+import trfx.mods.wallpapercraft.init.ModBlocks;
 
 public class ModBlockLoot extends BlockLoot {
     @Override
