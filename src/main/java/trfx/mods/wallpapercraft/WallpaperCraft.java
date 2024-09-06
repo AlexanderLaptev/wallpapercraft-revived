@@ -9,6 +9,7 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 import trfx.mods.wallpapercraft.autogen.pattern.PatternLoader;
+import trfx.mods.wallpapercraft.client.ColorPickingHandler;
 import trfx.mods.wallpapercraft.client.ModKeyMappings;
 import trfx.mods.wallpapercraft.client.MouseScrollingHandler;
 import trfx.mods.wallpapercraft.datagen.ModDataGenerator;
@@ -32,6 +33,7 @@ public class WallpaperCraft {
 
         ModNetworkHandler.register();
         MinecraftForge.EVENT_BUS.register(MouseScrollingHandler.class);
+        MinecraftForge.EVENT_BUS.register(ColorPickingHandler.class);
 
         var modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.register(ModDataGenerator.class);

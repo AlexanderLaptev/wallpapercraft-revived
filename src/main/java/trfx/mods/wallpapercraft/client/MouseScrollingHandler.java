@@ -18,7 +18,7 @@ public class MouseScrollingHandler {
         if (!ModKeyMappings.SCROLL_KEY_MAPPING.isDown()) { return; }
 
         ItemStack heldStack = Minecraft.getInstance().player.getInventory().getSelected();
-        Optional<WallpaperBlock> optional = ScrollingMessage.tryConvertStackToModBlock(heldStack);
+        Optional<WallpaperBlock> optional = WallpaperBlock.tryConvertStack(heldStack);
         if (optional.isEmpty()) { return; }
         ModNetworkHandler.MAIN_CHANNEL.sendToServer(new ScrollingMessage(event.getScrollDelta() < 0.0f));
         event.setCanceled(true);

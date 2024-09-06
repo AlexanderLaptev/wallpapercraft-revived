@@ -3,6 +3,7 @@ package trfx.mods.wallpapercraft.autogen.pattern;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.commons.lang3.Validate;
 import trfx.mods.wallpapercraft.WallpaperCraft;
 import trfx.mods.wallpapercraft.util.ResourceHelper;
 
@@ -22,7 +23,11 @@ public class PatternLoader {
         Map<String, Pattern> patterns = new LinkedHashMap<>();
         for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
             var pattern = Pattern.fromJson(entry.getKey(), entry.getValue().getAsJsonObject());
-            patterns.put(pattern.getName(), pattern);
+            Validate.isTrue(
+                    patterns.put(pattern.getName(), pattern) == null,
+                    "Duplicate pattern found: %s",
+                    entry.getKey()
+            );
             WallpaperCraft.LOGGER.debug("Loaded pattern: {}", pattern.getName());
         }
 

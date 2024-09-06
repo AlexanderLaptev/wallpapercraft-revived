@@ -2,6 +2,9 @@ package trfx.mods.wallpapercraft.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -11,6 +14,7 @@ import trfx.mods.wallpapercraft.autogen.pattern.Pattern;
 import trfx.mods.wallpapercraft.autogen.variant.VariantsDefinition;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.ToIntFunction;
 
 public class WallpaperBlock extends Block {
@@ -57,6 +61,13 @@ public class WallpaperBlock extends Block {
         return variants.get(Math.floorMod(index + (direction ? 1 : -1), variants.size()));
     }
 
+    public boolean canBeScrolledTo(WallpaperBlock other) {
+        if (!pattern.getName().equals(other.pattern.getName())) { return false; }
+        VariantsDefinition.Group myGroup = pattern.getVariantsDefinition().getGroupForVariant(variant);
+        VariantsDefinition.Group theirGroup = other.pattern.getVariantsDefinition().getGroupForVariant(other.variant);
+        return myGroup.equals(theirGroup);
+    }
+
     public static String getRegistryName(
             Pattern pattern,
             String variant,
@@ -73,6 +84,15 @@ public class WallpaperBlock extends Block {
             sb.append(modelSuffix);
         }
         return sb.toString();
+    }
+
+    public static Optional<WallpaperBlock> tryConvertStack(ItemStack stack) {
+        if (stack.isEmpty()) { return Optional.empty(); }
+        Item item = stack.getItem();
+        if (!(item instanceof BlockItem blockItem)) { return Optional.empty(); }
+        Block block = blockItem.getBlock();
+        if (!(block instanceof WallpaperBlock modBlock)) { return Optional.empty(); }
+        return Optional.of(modBlock);
     }
 
     public Pattern getPattern() {

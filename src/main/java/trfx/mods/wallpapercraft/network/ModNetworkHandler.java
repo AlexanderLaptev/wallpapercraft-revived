@@ -24,5 +24,12 @@ public class ModNetworkHandler {
                 ScrollingMessage::decode,
                 ScrollingMessage::handle
         );
+        MAIN_CHANNEL.registerMessage(
+                index++,
+                ColorPickMessage.class,
+                ColorPickMessage::encode,
+                ColorPickMessage::decode,
+                ColorPickMessage::handle
+        );
     }
 }

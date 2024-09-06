@@ -51,15 +51,12 @@ public class ScrollingMessage {
         ctx.setPacketHandled(true);
     }
 
-    public static Optional<WallpaperBlock> tryConvertStackToModBlock(ItemStack stack) {
+    private static Optional<WallpaperBlock> tryConvertStackToModBlock(ItemStack stack) {
         if (stack.isEmpty()) { return Optional.empty(); }
-
         Item item = stack.getItem();
         if (!(item instanceof BlockItem blockItem)) { return Optional.empty(); }
-
         Block block = blockItem.getBlock();
         if (!(block instanceof WallpaperBlock modBlock)) { return Optional.empty(); }
-
         return Optional.of(modBlock);
     }
 }
